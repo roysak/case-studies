@@ -3,9 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>UX Case Studies</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <a href="01/index.html">01</a>
+<body class="min-h-screen bg-white text-neutral-900 font-sans selection:bg-neutral-200">
+
+    <!-- Minimal Header -->
+    <header class="max-w-6xl mx-auto px-6 py-12 md:py-20 flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div>
+            <h1 class="text-3xl md:text-4xl font-semibold tracking-tight mb-3">
+                Roys A Kareem
+            </h1>
+            <h2 class="text-xl md:text-2xl text-neutral-700 font-medium mb-4">
+                Specialist I - UX/UI Designer
+            </h2>
+            <p class="text-neutral-500 text-lg max-w-xl leading-relaxed">
+                A collection of my recent work focusing on intuitive problem-solving, 
+                user-centered design, and measurable impact.
+            </p>
+        </div>
+        <div class="text-sm font-medium text-neutral-400">
+            Selected Case Studies
+        </div>
+    </header>
+
+    <!-- Case Studies Grid -->
+    <main class="max-w-6xl mx-auto px-6 pb-24">
+        <div id="case-studies-grid" class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
+            <!-- JavaScript will populate this -->
+        </div>
+    </main>
+    
+    <!-- Minimal Footer -->
+    <footer class="border-t border-neutral-100 bg-white py-8 text-center text-sm text-neutral-400">
+        <p>© <span id="year"></span> • Designed with intention.</p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const caseStudies = [
+            {
+                id: 1,
+                link: 1,
+                title: "Automation Story Property Panel Redesign",
+                client: "SmartOPS",
+                description: "Redesigning a stacked property form into a compact, high-density grid to speed up automation setup, reduce errors, and maximize screen real estate.",
+                tags: ["User Research", "UI Design", "Prototyping", "HTML/CSS"],
+                color: "bg-blue-100",
+                image: "automationstory.png"
+            }
+        ];
+
+        const gridContainer = document.getElementById('case-studies-grid');
+
+        caseStudies.forEach(study => {
+            const article = document.createElement('article');
+            article.className = 'group cursor-pointer flex flex-col';
+            article.onclick = () => alert(`Navigating to ${study.title} case study...`);
+
+            const tagsHtml = study.tags.map(tag => `
+                <span class="px-3 py-1 bg-white border border-neutral-200 text-neutral-600 text-xs font-medium rounded-full">
+                    ${tag}
+                </span>
+            `).join('');
+
+            article.innerHTML = `
+                <a href="0${study.link}/">
+                    <div class="relative w-full aspect-[4/2] rounded-2xl overflow-hidden mb-6 transition-all duration-500 ease-out border border-neutral-100 ${study.color} flex items-center justify-center shadow-sm group-hover:shadow-xl group-hover:scale-[1.02]">
+                        <span class="text-5xl font-bold tracking-tighter transition-transform duration-500 group-hover:scale-110">
+                            <image src="img/${study.image}" class="object-fit">
+                        </span>
+                        
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm transition-all duration-300 ease-out opacity-0 translate-y-2 -translate-x-2 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-neutral-900">
+                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                <polyline points="7 7 17 7 17 17"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col flex-grow">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="text-xs font-semibold uppercase tracking-wider text-neutral-500">
+                                ${study.client}
+                            </span>
+                        </div>
+                        
+                        <h2 class="text-2xl font-semibold mb-3 group-hover:text-neutral-600 transition-colors">
+                            ${study.title}
+                        </h2>
+                        
+                        <p class="text-neutral-500 leading-relaxed mb-6 flex-grow">
+                            ${study.description}
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            ${tagsHtml}
+                        </div>
+                    </div>
+                </a>
+            `;
+            
+            gridContainer.appendChild(article);
+        });
+    </script>
 </body>
 </html>
