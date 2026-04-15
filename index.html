@@ -60,7 +60,6 @@
         caseStudies.forEach(study => {
             const article = document.createElement('article');
             article.className = 'group cursor-pointer flex flex-col';
-            article.onclick = () => alert(`Navigating to ${study.title} case study...`);
 
             const tagsHtml = study.tags.map(tag => `
                 <span class="px-3 py-1 bg-white border border-neutral-200 text-neutral-600 text-xs font-medium rounded-full">
